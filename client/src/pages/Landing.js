@@ -2,6 +2,7 @@ import logo from '../assets/images/logo.svg'
 import main from '../assets/images/main-alternative.svg'
 import Wrapper from '../assets/wrappers/Testing'
 import { NewLogo } from '../components'
+import { Link } from 'react-router-dom'
 const Landing = () => {
   return (
     <Wrapper>
@@ -19,7 +20,7 @@ const Landing = () => {
                  Farm-to-table tilde narwhal pok pok, pour-over butcher
                  gluten-free vice cray brunch 90's 
                  </p>
-                 <button className='btn btn-hero'> Login / Register</button>
+                 <Link to='/register' className='btn btn-hero'> Login / Register</Link>
              </div>
              <div className='main-img-div'>
              <img src={main} alt="Job hunt" className="img main-img " />
