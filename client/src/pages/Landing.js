@@ -1,10 +1,12 @@
 import logo from '../assets/images/logo.svg'
-import main from '../assets/images/main.svg'
+import main from '../assets/images/main-alternative.svg'
+import Wrapper from '../assets/wrappers/Testing'
+import { NewLogo } from '../components'
 const Landing = () => {
   return (
-    <main>
+    <Wrapper>
         <nav>
-            <img src={logo} alt="jobify-logo" className="logo"/>
+            <NewLogo/>
         </nav>
           <div className='container page'>
              <div className="info">
@@ -17,12 +19,15 @@ const Landing = () => {
                  Farm-to-table tilde narwhal pok pok, pour-over butcher
                  gluten-free vice cray brunch 90's 
                  </p>
-                 <button className='btn btn-hero'> Login/Register</button>
+                 <button className='btn btn-hero'> Login / Register</button>
              </div>
+             <div className='main-img-div'>
              <img src={main} alt="Job hunt" className="img main-img " />
+             </div>
+            
           </div>
 
-    </main>
+    </Wrapper>
 
   )
 }
