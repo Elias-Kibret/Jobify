@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { NewLogo } from "../components"
+import { NewLogo,Logo,Alert } from "../components"
 import Wrapper from "../assets/wrappers/RegisterPage"
 
 
@@ -7,7 +7,8 @@ const initialState={
     name:'',
     email:'',
     password:'',
-    isMember:true
+    isMember:true,
+    showAlert:true
 }
 
 const Register = () => {
@@ -27,7 +28,7 @@ const Register = () => {
     <Wrapper className="full-page">
         
         <form className="form" onSubmit={onSubmit}>
-            <Logo/>
+            <NewLogo/>
             <h3>
                  Login
             </h3>
@@ -41,7 +42,7 @@ const Register = () => {
                 className="form-input"
                 />
             </div>
-            <button type="submit" className="btn btn-block"></button>
+            <button type="submit" className="btn btn-block">Submit</button>
         </form>
 
     </Wrapper>
