@@ -22,11 +22,6 @@ const AppProvider=({children})=>{
         dispatch({type:CLEAR_ALERT})
        },3000)
    }
-   const handleChange=(e)=>{
-       setVal
-   }
-
-
 
 return <AppContext.Provider value={{...state,displayAlert}}>
     {children}
