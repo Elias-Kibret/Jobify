@@ -1,4 +1,7 @@
+import { Action } from "history";
 import React,{ useState,useReducer,useContext } from "react";
+
+import reducer from "./reducer";
 const intialState={
     isLoading:false,
     showAlert:false,
@@ -9,7 +12,7 @@ const intialState={
 const AppContext=React.createContext()
 
 const AppProvider=({children})=>{
-    const [state,setState]=useState(intialState)
+    const [state,dispatch]=useReducer(reducer,intialState)
 return <AppContext.Provider value={{...state}}>
     {children}
 </AppContext.Provider>
