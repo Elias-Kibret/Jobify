@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import { NewLogo,Alert,FormRow } from "../components"
 import Wrapper from "../assets/wrappers/RegisterPage"
-import { useAppContext } from "../components/context/appContext"
+import { useAppContext } from "../context/appContext"
 
 
 const initialState={
