@@ -1,17 +1,17 @@
 const register=async(req,res)=>{
-        res.send('Register')
+        res.json('Register')
     
 }
  const login =async(req,res)=>{
 
-    res.send('log in')
+    res.json('log in')
 
 }
 
  const updateUser =async(req,res)=>{
 
     
-        res.send('uses has been updated')
+        res.json('uses has been updated')
     
 }
 
