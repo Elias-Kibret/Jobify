@@ -1,12 +1,12 @@
 import User from '../models/User.js'
 import {StatusCodes} from 'http-status-codes'
-const register=async(req,res)=>{
-        try {
+const register=async(req,res,next)=>{
+
                 const user=await User.create(req.body)
                 res.status(201).json({user})
-        } catch (error) {
+        
                 res.status(500).json({msg:'there wa na error'})
-        }
+        
     
 }
  const login =async(req,res)=>{
