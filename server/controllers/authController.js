@@ -5,10 +5,17 @@ const register=async(req,res,next)=>{
     if(!name || !email || !password){
         throw new  BadRequestError('please provide all values')
     }
+    const userAlreadyExists=await User.findOne({email});
+    if(userAlreadyExists){
+        throw new BadRequestError('Email already exist')
+    }
+
                 const user=await User.create({name,email,password})
                 res.status(201).json({user})
                 res.status(500).json({msg:'there wa na error'})
 }
+
+
  const login =async(req,res)=>{
     res.json('log in')
 }
