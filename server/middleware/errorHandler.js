@@ -1,9 +1,9 @@
 import {StatusCodes} from 'http-status-codes'
 export const errorHandler=(err,req,res,next)=>{
-    console.log(err)
+    console.log(err.message)
     const defaultError={
-        statusCode:StatusCodes.INTERNAL_SERVER_ERROR,
-        msg:'Something wend wrong ,try again later'
+        statusCode:err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+        msg:err.message || 'Something wend wrong ,try again later'
     }
     if(err.name==='ValidationError')
     {
