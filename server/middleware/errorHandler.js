@@ -5,5 +5,12 @@ export const errorHandler=(err,req,res,next)=>{
         statusCode:StatusCodes.INTERNAL_SERVER_ERROR,
         msg:'Something wend wrong ,try again later'
     }
-     res.status(defaultError.statusCode).json({msg:defaultError})
+    if(err.name==='ValidationError')
+    {
+        defaultError.statusCode=StatusCodes.BAD_REQUEST
+        defaultError.msg=Object.values(err.errors).map((item)=>item.message).join(',')
+    }
+    //  res.status(defaultError.statusCode).json({msg:err})
+     res.status(defaultError.statusCode).json({msg:defaultError.msg})
+
 }
