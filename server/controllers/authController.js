@@ -22,7 +22,7 @@ const register=async(req,res,next)=>{
 
  const updateUser =async(req,res)=>{
         res.json('uses has been updated')
-        User.findOneAndUpdate()  
+      
 }
 
 export  {register,login,updateUser}
