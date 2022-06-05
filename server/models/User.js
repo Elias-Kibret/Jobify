@@ -51,7 +51,7 @@ location:{
 })
 
 
-UserSchema.pre('save',async function(){
+UserSchema.pre('save',async function(next){
     const salt=await bcryptjs.genSalt(10)
     this.password=await bcryptjs.hash(this.password,salt)
     console.log(this.password)
@@ -59,4 +59,7 @@ UserSchema.pre('save',async function(){
     
     
 })
+UserSchema.methods.createJWT=function(){
+    console.log(this)
+}
 export default mongoose.model("User",UserSchema)

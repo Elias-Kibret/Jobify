@@ -2,6 +2,7 @@ import User from '../models/User.js'
 import { BadRequestError} from '../errors/index.js'
 const register=async(req,res,next)=>{
     const {name,email,password}=req.body
+    
     if(!name || !email || !password){
         throw new  BadRequestError('please provide all values')
     }
@@ -11,8 +12,9 @@ const register=async(req,res,next)=>{
     }
 
                 const user=await User.create({name,email,password})
+                user.createJWT()
                 res.status(201).json({user})
-                res.status(500).json({msg:'there wa na error'})
+            
 }
 
 
