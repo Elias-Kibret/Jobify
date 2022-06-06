@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors'
 const app=express()
 import dotenv from 'dotenv'
 dotenv.config()
@@ -16,11 +17,12 @@ import jobRouters from './routes/jobsRoutes.js'
 // Middleware
 import {notFoundMiddle} from './middleware/notFound.js'
 import { errorHandler } from "./middleware/errorHandler.js";
-
+app.use(cors())
 app.use(express.json())
+
 app.get('/',(req,res)=>{
 
-    res.send('welcome')
+    res.json({msg:'welcome'})
 })
 app.use('/api/v1/auth',authRouters)
 app.use('/api/v1/jobs',jobRouters)
