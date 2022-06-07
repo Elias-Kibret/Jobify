@@ -1,5 +1,5 @@
 import express from "express";
-import cors from 'cors'
+// import cors from 'cors'
 const app=express()
 import dotenv from 'dotenv'
 dotenv.config()
@@ -17,10 +17,10 @@ import jobRouters from './routes/jobsRoutes.js'
 // Middleware
 import {notFoundMiddle} from './middleware/notFound.js'
 import { errorHandler } from "./middleware/errorHandler.js";
-app.use(cors())
+// app.use(cors())
 app.use(express.json())
 
-app.get('/',(req,res)=>{
+app.get('/api/v1',(req,res)=>{
 
     res.json({msg:'welcome'})
 })
