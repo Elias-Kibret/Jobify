@@ -25,8 +25,25 @@ const AppProvider=({children})=>{
         dispatch({type:CLEAR_ALERT})
        },3000)
    }
+const addUserToLocalStorage=({user,token,location})=>{
+    localStorage.setItem('user',JSON.stringify(user))
+    localStorage.setItem('token',token)
+    localStorage.setItem('location',location)
+
+} 
+const removeUserFromLocalStorage=()=>{
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    localStorage.removeItem('location')
+}
+
    const registerUser=async(currentUser)=>{
-            console.log(currentUser)
+            dispatch({type:REGISTER_USER_BEGIN})
+            try {
+                
+            } catch (error) {
+                
+            }
    }
 
 return <AppContext.Provider value={{...state,displayAlert,registerUser}}>
