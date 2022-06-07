@@ -19,7 +19,9 @@ import {notFoundMiddle} from './middleware/notFound.js'
 import { errorHandler } from "./middleware/errorHandler.js";
 // app.use(cors())
 app.use(express.json())
-
+app.get('/',(req,res)=>{
+    res.send("Home")
+})
 app.get('/api/v1',(req,res)=>{
 
     res.json({msg:'welcome'})
