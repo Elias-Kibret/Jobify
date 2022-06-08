@@ -3,15 +3,21 @@ import { CLEAR_ALERT, DISPLAY_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,RE
 import axios from "axios"
 
 import reducer from "./reducer";
+
+
+const token=localStorage.getItem('token')
+const user=localStorage.getItem('user')
+const User_location=localStorage.getItem('location')
+
 const initialState={
     isLoading:false,
     showAlert:false,
     alertText:"",
     alertType:'',
-    user:null,
+    user:user?JSON.parse(user):null,
     token:null,
-    userLocation:"",
-    jobLocation:''
+    userLocation:User_location || '',
+    jobLocation:User_location || ''
 }
 
 const AppContext=React.createContext()
@@ -51,7 +57,8 @@ const removeUserFromLocalStorage=()=>{
                     token,
                     location
                 }})
-            // local storage later    
+            addUserToLocalStorage({token,user,User_location})
+
             } catch (error) {
                 console.log(error.response)
                 dispatch({type:REGISTER_USER_ERROR,payload:{msg:error.response.data.msg}})
