@@ -50,8 +50,10 @@ const removeUserFromLocalStorage=()=>{
                     token,
                     location
                 }})
+            // local storage later    
             } catch (error) {
-                console.log('')
+                console.log(error.response)
+                dispatch({type:REGISTER_USER_ERROR,payload:{msg:error.response.data.msg}})
             }
    }
 
