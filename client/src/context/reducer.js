@@ -31,7 +31,21 @@ const reducer =(state,action)=>{
         alertText:'User Created! Redirecting...'
 
     }
+    
 }
+
+if(action.type===REGISTER_USER_ERROR){
+    return {
+        ...state,
+        isLoading:false,
+        showAlert:true,
+        alertType:'danger',
+        alertText:action.payload.msg
+
+    }
+    
+}
+
 throw new Error (`no such actions: ${action.type}`)
 }
 

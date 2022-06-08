@@ -10,7 +10,8 @@ const initialState={
     alertType:'',
     user:null,
     token:null,
-    userLocation:""
+    userLocation:"",
+    jobLocation:''
 }
 
 const AppContext=React.createContext()
@@ -42,7 +43,7 @@ const removeUserFromLocalStorage=()=>{
             dispatch({type:REGISTER_USER_BEGIN})
             try {
                 const response=await axios.post('/api/v1/auth/register',currentUser)
-                console.log(response)
+                console.log(response.data)
                 const {user,token,location}=response.data
                 dispatch({type:REGISTER_USER_SUCCESS,
                 payload:{
