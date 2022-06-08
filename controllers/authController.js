@@ -1,6 +1,7 @@
 import User from '../models/User.js'
 import { BadRequestError} from '../errors/index.js'
 import { UnauthenticatedError } from '../errors/unauthenticated.js'
+import { StatusCodes } from 'http-status-codes'
 const register=async(req,res,next)=>{
     const {name,email,password}=req.body
     
@@ -14,7 +15,7 @@ const register=async(req,res,next)=>{
 
                 const user=await User.create({name,email,password})
                 const token= user.createJWT()
-                res.status(201).json({user:{
+                res.status(StatusCodes.CREATED).json({user:{
                     email:user.email,
                     name:user.lastName,
                     lastName:user.lastName,
@@ -41,8 +42,9 @@ const register=async(req,res,next)=>{
     if(!isPasswordCorrect){
         throw new UnauthenticatedError('Invalid Credentials')
     }
-
-    res.json('log in')
+    const token=user.createJWT()
+    user.password=undefined;
+res.status(StatusCodes.OK ).json({user,token,location:user.location})
 }
 
  const updateUser =async(req,res)=>{
