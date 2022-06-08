@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import { BadRequestError} from '../errors/index.js'
+import { UnauthenticatedError } from '../errors/unauthenticated.js'
 const register=async(req,res,next)=>{
     const {name,email,password}=req.body
     
@@ -24,6 +25,23 @@ const register=async(req,res,next)=>{
 
 
  const login =async(req,res)=>{
+     const{email,password}=req.body
+    if(!email || !password){
+        throw new BadRequestError('Please provide all values')
+    }
+    const user=await User.findOne({email}).select('+password ')
+    // if(user){
+    //     User.comparePassword(user.password,password)
+    // }
+    if(!user){
+        throw new UnauthenticatedError('Invalid Credentials')
+    }
+    console.log(user)
+    const isPasswordCorrect=await user.comparePassword(password)
+    if(!isPasswordCorrect){
+        throw new UnauthenticatedError('Invalid Credentials')
+    }
+
     res.json('log in')
 }
 

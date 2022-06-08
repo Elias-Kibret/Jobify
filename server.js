@@ -4,6 +4,7 @@ const app=express()
 import dotenv from 'dotenv'
 dotenv.config()
 import 'express-async-errors' 
+import morgan from 'morgan'
 // db and authentications
 import { connectDB } from "./db/connect.js";
 
@@ -17,7 +18,11 @@ import jobRouters from './routes/jobsRoutes.js'
 // Middleware
 import {notFoundMiddle} from './middleware/notFound.js'
 import { errorHandler } from "./middleware/errorHandler.js";
+
 // app.use(cors())
+if(process.env.NODE_ENV !== 'production'){
+    app.use(morgan('dev'))
+}
 app.use(express.json())
 app.get('/',(req,res)=>{
     res.send("Home")
