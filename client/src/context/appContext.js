@@ -1,5 +1,15 @@
 import React,{useReducer,useContext } from 'react';
-import { CLEAR_ALERT, DISPLAY_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGISTER_USER_ERROR } from "./actions";
+import { 
+    CLEAR_ALERT, 
+    DISPLAY_ALERT,
+    REGISTER_USER_BEGIN,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR ,
+    LOGIN_USER_BEGIN,
+    LOGIN_USER_SUCCESS,
+    LOGIN_USER_ERROR
+
+} from "./actions";
 import axios from "axios"
 
 import reducer from "./reducer";
@@ -63,9 +73,35 @@ const removeUserFromLocalStorage=()=>{
                 console.log(error.response)
                 dispatch({type:REGISTER_USER_ERROR,payload:{msg:error.response.data.msg}})
             }
+            clearAlert()
    }
 
-return <AppContext.Provider value={{...state,displayAlert,registerUser}}>
+   const loginUser=async (currentUser)=>{
+        
+    dispatch({type:LOGIN_USER_BEGIN})
+    try {
+        const {data}=await axios.post('/api/v1/auth/login',currentUser)
+        
+        const {user,token,location}=data
+        dispatch({type:LOGIN_USER_SUCCESS,
+        payload:{
+            user,
+            token,
+            location
+        }})
+    addUserToLocalStorage({token,user,User_location})
+
+    } catch (error) {
+    
+        dispatch({
+            type:LOGIN_USER_ERROR,
+            payload:{msg:error.response.data.msg}})
+    }
+    clearAlert()
+
+   }
+
+return <AppContext.Provider value={{...state,displayAlert,registerUser,loginUser}}>
     {children}
 </AppContext.Provider>
 }
