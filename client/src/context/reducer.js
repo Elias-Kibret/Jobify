@@ -3,7 +3,8 @@ import {
      CLEAR_ALERT,
      SETUP_USER_BEGIN,
      SETUP_USER_SUCCESS,
-     SETUP_USER_ERROR
+     SETUP_USER_ERROR,
+     TOGGLE_SIDEBAR
     
     } from "./actions"
 const reducer =(state,action)=>{
@@ -52,6 +53,14 @@ const reducer =(state,action)=>{
      }
      
     }
+    if(action.type===TOGGLE_SIDEBAR){
+        return {
+            ...state,
+            showSideBar:!state.showSideBar 
+           
+        }
+            
+       }
 
 throw new Error (`no such actions: ${action.type}`)
 }

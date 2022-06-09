@@ -4,7 +4,8 @@ import {
     DISPLAY_ALERT,
     SETUP_USER_BEGIN,
     SETUP_USER_SUCCESS,
-    SETUP_USER_ERROR
+    SETUP_USER_ERROR,
+    TOGGLE_SIDEBAR 
 
 } from "./actions";
 import axios from "axios"
@@ -24,7 +25,8 @@ const initialState={
     user:user?JSON.parse(user):null,
     token:null,
     userLocation:User_location || '',
-    jobLocation:User_location || ''
+    jobLocation:User_location || '',
+    showSideBar:false
 }
 
 const AppContext=React.createContext()
@@ -78,9 +80,11 @@ const removeUserFromLocalStorage=()=>{
     
        }
 
+const toggleSidebar=()=>{
+    dispatch({type:TOGGLE_SIDEBAR})
+}
 
-
-return <AppContext.Provider value={{...state,displayAlert,setUpUser}}>
+return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar }}>
     {children}
 </AppContext.Provider>
 }
