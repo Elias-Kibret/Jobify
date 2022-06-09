@@ -1,10 +1,18 @@
 import Wrapper from '../assets/wrappers/Navbar'
-import {FaHome} from 'react-icons/fa'
+import {FaAlignLeft ,FaUserCircle,FaCaretDown} from 'react-icons/fa'
+import { useAppContext } from '../context/appContext'
+import Logo from './NewLogo'
 const Navbar = () => {
   return (
     <Wrapper>
-        <h4>Navbar</h4>
-        <FaHome/>
+        
+        <div className='nav-center'>
+            <button className='toggle-btn' onClick={()=>{
+                console.log('toggle sidebar')
+            }}>
+             <FaAlignLeft/>
+            </button>
+        </div>
     </Wrapper>
   )
 }
