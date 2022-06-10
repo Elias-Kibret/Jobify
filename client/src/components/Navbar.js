@@ -6,7 +6,7 @@ import NewLogo from './NewLogo'
 import { useState } from 'react'
 const Navbar = () => {
     const [showLogout ,setShowLogout]=useState(false)
-    const {toggleSidebar}=useAppContext()
+    const {user,toggleSidebar,logout}=useAppContext()
     
   return (
     <Wrapper>
@@ -24,12 +24,12 @@ const Navbar = () => {
             <div className='btn-container' onClick={()=>{setShowLogout(!showLogout)}}>
                 <button type='button' className='btn' onClick={toggleSidebar}>
                       <FaUserCircle/>
-                      john
+                      {user?.name}
                       <FaCaretDown/>
                 </button>
-                <div className={showLogout?'dropdown show-dropdown':'dropdown'}
+                <div className={showLogout?'dropdown show-dropdown':'dropdown'} 
                 >
-                   <button type="button" className='dropdown-btn' >
+                   <button type="button" className='dropdown-btn' onClick={logout} >
                        logout
                    </button>
                 </div>

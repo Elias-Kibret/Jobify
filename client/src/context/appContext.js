@@ -5,9 +5,11 @@ import {
     SETUP_USER_BEGIN,
     SETUP_USER_SUCCESS,
     SETUP_USER_ERROR,
-    TOGGLE_SIDEBAR 
+    TOGGLE_SIDEBAR,
+    LOGOUT_USER
 
 } from "./actions";
+
 import axios from "axios"
 
 import reducer from "./reducer";
@@ -83,12 +85,18 @@ const removeUserFromLocalStorage=()=>{
 const toggleSidebar=()=>{
     dispatch({type:TOGGLE_SIDEBAR})
 }
+const logout=()=>{
+    dispatch({type:LOGOUT_USER})
+    removeUserFromLocalStorage()
+}
 
-return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar }}>
+return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar,logout }}>
     {children}
 </AppContext.Provider>
 }
 const useAppContext=()=>{
     return useContext(AppContext)
+    
 }
+
 export {AppProvider,initialState,useAppContext}

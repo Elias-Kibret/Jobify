@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import { NewLogo,Alert,FormRow } from "../components"
 import Wrapper from "../assets/wrappers/RegisterPage"
 import { useAppContext } from "../context/appContext"
-import { REGISTER_USER_BEGIN } from "../context/actions"
+
 
 
 const initialState={
@@ -19,7 +19,7 @@ const Register = () => {
             //  global state and useNavigate
             const navigate=useNavigate()
 
-const {user,isLoading,showAlert,displayAlert,registerUser,loginUser,setUpUser}=useAppContext()
+const {user,isLoading,showAlert,displayAlert,setUpUser}=useAppContext()
 
     
     const toggleMember=()=>{
