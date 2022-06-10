@@ -7,7 +7,7 @@ import 'express-async-errors'
 import morgan from 'morgan'
 // db and authentications
 import { connectDB } from "./db/connect.js";
-
+import {auth} from './middleware/auth.js'
 //routers
 import authRouters from './routes/authRoutes.js'
 import jobRouters from './routes/jobsRoutes.js'
@@ -32,7 +32,7 @@ app.get('/api/v1',(req,res)=>{
     res.json({msg:'welcome'})
 })
 app.use('/api/v1/auth',authRouters)
-app.use('/api/v1/jobs',jobRouters)
+app.use('/api/v1/jobs',auth , jobRouters)
 app.use(notFoundMiddle)
 app.use(errorHandler)
 const port =process.env.PORT || 5000
