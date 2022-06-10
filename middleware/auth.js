@@ -1,4 +1,7 @@
 export const auth=async(req,res,next)=>{
-    console.log("authenticated user")
+    const headers=req.headers
+    const authHeader=req.headers.authorization
+    console.log(headers)
+    console.log(authHeader)
     next()
 }
