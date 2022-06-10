@@ -48,6 +48,7 @@ res.status(StatusCodes.OK ).json({user,token,location:user.location})
 }
 
  const updateUser =async(req,res)=>{
+     console.log(req.user)
         res.json('uses has been updated')
       
 }
