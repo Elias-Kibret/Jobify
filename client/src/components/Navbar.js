@@ -12,9 +12,7 @@ const Navbar = () => {
     <Wrapper>
         
         <div className='nav-center'>
-            <button className='toggle-btn' onClick={()=>{
-                console.log('toggle sidebar')
-            }}>
+            <button className='toggle-btn' onClick={toggleSidebar}>
              <FaAlignLeft/>
             </button>
             <div>
