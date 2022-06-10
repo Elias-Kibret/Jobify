@@ -28,7 +28,7 @@ const initialState={
     token:null,
     userLocation:User_location || '',
     jobLocation:User_location || '',
-    showSideBar:false
+    showSideBar:true
 }
 
 const AppContext=React.createContext()
