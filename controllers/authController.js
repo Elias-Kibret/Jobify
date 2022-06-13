@@ -26,19 +26,37 @@ const register=async(req,res,next)=>{
 
 
  const login =async(req,res)=>{
+     //receive the login Credentials from req.body
+
+
      const{email,password}=req.body
+     //check if the is email and password provided 
     if(!email || !password){
+        // if the is no email or password or even both
+        // this throw error 
         throw new BadRequestError('Please provide all values')
     }
+    // Nice Know we have email and password but we have to check weather the user really register or not
+    // we can do this using build in method of moongose that is findOne 
+    // hence email is unique if the user is already registered we can find him easily 
+
     const user=await User.findOne({email}).select('+password ')
+    // here what does .select('+password') do ...when we create schema , we specify password select:false , which mean when we send res back as json we don't what to return the password  
+    // for security reason
+    // but we know we need to check password , here we need to return the password for the DB
+    // the we have to compare it with the one the user provide 
+    
     // if(user){
     //     User.comparePassword(user.password,password)
     // }
     if(!user){
+        // if there is no user we throw error that is Invalid credentials 
         throw new UnauthenticatedError('Invalid Credentials')
     }
     console.log(user)
+    // we are going to do check the password is correct or not 
     const isPasswordCorrect=await user.comparePassword(password)
+    
     if(!isPasswordCorrect){
         throw new UnauthenticatedError('Invalid Credentials')
     }
