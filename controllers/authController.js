@@ -56,12 +56,21 @@ const register=async(req,res,next)=>{
     console.log(user)
     // we are going to do check the password is correct or not 
     const isPasswordCorrect=await user.comparePassword(password)
-    
+    // this return boolean value 
     if(!isPasswordCorrect){
+        // if the password is incorrect , throw error
         throw new UnauthenticatedError('Invalid Credentials')
     }
+    // if the password is correct 
+    // create token 
+    // then send is over res.json 
+    // on the frontend axios grasp this value for authentication 
+    // it's custom method 
     const token=user.createJWT()
+    // after comparing password we have to make sure 
+    // the password undefined , that is to hide it 
     user.password=undefined;
+    // no response side , whe need user token and user location 
 res.status(StatusCodes.OK ).json({user,token,location:user.location})
 }
 

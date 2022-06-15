@@ -11,9 +11,7 @@ import {
 } from "./actions";
 
 import axios from "axios"
-
 import reducer from "./reducer";
-
 
 const token=localStorage.getItem('token')
 const user=localStorage.getItem('user')
@@ -32,7 +30,6 @@ const initialState={
 }
 
 const AppContext=React.createContext()
-
 const AppProvider=({children})=>{
     const [state,dispatch]=useReducer(reducer,initialState)
 
@@ -48,7 +45,6 @@ const addUserToLocalStorage=({user,token,location})=>{
     localStorage.setItem('user',JSON.stringify(user))
     localStorage.setItem('token',token)
     localStorage.setItem('location',location)
-
 } 
 const removeUserFromLocalStorage=()=>{
     localStorage.removeItem('user')
@@ -57,11 +53,9 @@ const removeUserFromLocalStorage=()=>{
 }
       //  SETUP
       const setUpUser=async ({currentUser,endPoint,alertText})=>{
-        
         dispatch({type:SETUP_USER_BEGIN})
         try {
             const {data}=await axios.post(`/api/v1/auth/${endPoint}`,currentUser)
-            
             const {user,token,location}=data
             dispatch({type:SETUP_USER_SUCCESS,
             payload:{
@@ -71,16 +65,14 @@ const removeUserFromLocalStorage=()=>{
                 alertText
             }})
         addUserToLocalStorage({token,user,User_location})
-    
+
         } catch (error) {
-        
             dispatch({
                 type:SETUP_USER_ERROR,
                 payload:{msg:error.response.data.msg}})
         }
         clearAlert()
-    
-       }
+}
 
 const toggleSidebar=()=>{
     dispatch({type:TOGGLE_SIDEBAR})
@@ -89,14 +81,16 @@ const logout=()=>{
     dispatch({type:LOGOUT_USER})
     removeUserFromLocalStorage()
 }
-
 return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar,logout }}>
     {children}
 </AppContext.Provider>
 }
+
+
 const useAppContext=()=>{
-    return useContext(AppContext)
-    
+    return useContext(AppContext)    
 }
 
-export {AppProvider,initialState,useAppContext}
+
+
+ export {AppProvider,initialState,useAppContext}
