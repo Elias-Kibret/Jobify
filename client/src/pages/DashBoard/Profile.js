@@ -13,8 +13,14 @@ const Profile = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
-    if()
+    if(!name || !email || !lastName || !location)
+    {
+      displayAlert()
+      return
+    }
+    updateUser({name,email,lastName,location})
   }
+  
   return (
     <div>Profile</div>
   )
