@@ -22,7 +22,9 @@ const Profile = () => {
   }
   
   return (
-    <div>Profile</div>
+    <Wrapper>
+
+    </Wrapper>
   )
 }
 

@@ -85,7 +85,7 @@ const logout=()=>{
 const updateUser=async(currentUser)=>{
 console.log(currentUser)
 }
-return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar,logout }}>
+return <AppContext.Provider value={{...state,displayAlert,setUpUser,toggleSidebar,logout,updateUser}}>
     {children}
 </AppContext.Provider>
 }
