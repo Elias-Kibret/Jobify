@@ -37,11 +37,31 @@ const Profile = () => {
 
             <FormRow 
                  type="text"
-                 name="name" 
-                 value={name} 
+                 name="lastName" 
+                 value={lastName} 
                  handleChange={(e)=>{
-                setName(e.target.value)}}
+                setLastName(e.target.value)}}
               />
+
+            <FormRow 
+             type="email"
+             name="email" 
+             value={email} 
+             handleChange={(e)=>{
+            setEmail(e.target.value)}}
+          />
+
+          <FormRow 
+             type="text"
+             name="Location" 
+             value={location} 
+             handleChange={(e)=>{
+            setLocation(e.target.value)}}
+          />
+
+          <button className="btn btn-block" type='submit' disabled={isLoading}>
+            {isLoading?"please wait...":'Save change'}
+          </button>
          </div>
          </form>             
     </Wrapper>
